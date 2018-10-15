@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Nexus 6P Double Tap to Wake</string>
+    <string name="description">This app enables the double tap to wake feature for the Nexus 6P.
+    ROOT IS REQUIRED FOR IT TO WORK! </string>
+    <string name="button_on">Activate</string>
+    <string name="button_off">Deactivate</string>
+    <string name="active">Double tap to wake is enabled</string>
+    <string name="inactive">Double tap to wake is disabled</string>
+    <string name="about">App Version: 1.1 \nCreated by: Russell Waterson \nQuestions or comments:
+        <a href="#">rwatersondev@gmail.com</a></string>
+    <string name="source_code">Source Code</string>
+    <string name="action_about">About</string>
+    <string name="about_message">Enable double tap to wake on your Nexus 6P. Once activated, there is no need to open the app again, it will run the command upon reboot.\n\nThis app simply unlocks a built in feature within your nexus device and therefore has no effect on battery life.\n"\n"Be sure to send me an email if any problems were encountered.</string>
+</resources>
