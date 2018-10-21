@@ -4,6 +4,8 @@ import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import java.io.DataOutputStream;
@@ -15,6 +17,7 @@ import java.io.IOException;
 public class CommandService extends IntentService {
 
     public static final String TRANSACTION_DONE = "com.russell.TRANSACTION_DONE";
+    public final static String CHANNEL_ID = "1234";
 
     public CommandService()
     {
@@ -27,14 +30,31 @@ public class CommandService extends IntentService {
     }
 
     @Override
+    public void onCreate() {
+        super.onCreate();
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.notification_icon)
+                .setContentTitle(getString(R.string.app_name))
+                .setContentText(getString(R.string.notification))
+                .setPriority(NotificationCompat.PRIORITY_MIN)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+        notificationManager.notify(100, mBuilder.build());
+
+        startForeground(100, mBuilder.build());
+    }
+
+    @Override
     protected void onHandleIntent(Intent intent)
     {
 
-//        Log.e("CommandService", "Service Started");
+        Log.e("CommandService", "Service Started");
 
         runCommand();
 
-//        Log.e("CommandService", "Service Stopped");
+        Log.e("CommandService", "Service Stopped");
 
         Intent i = new Intent(TRANSACTION_DONE);
 
@@ -44,7 +64,7 @@ public class CommandService extends IntentService {
 
     protected void runCommand()
     {
-//        Log.e("CommandService", "Service called!!!!");
+        Log.e("CommandService", "Service called!");
         SharedPreferences sharedPreferences = getSharedPreferences("MyData", Context.MODE_PRIVATE);
 
         if (sharedPreferences.getBoolean("active", false))
@@ -69,7 +89,7 @@ public class CommandService extends IntentService {
             {
                 e.printStackTrace();
             }
-//            Log.e("CommandService", "Command Ran!!!!");
+            Log.e("CommandService", "Command Ran!");
         }
     }
 }
